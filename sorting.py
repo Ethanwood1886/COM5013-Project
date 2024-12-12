@@ -58,12 +58,18 @@ def merge_sort(array):
 # Sorted Words: Merge Sort
 start_time = time.time()
 sorted_small_data = merge_sort(token_small_data)
+print("Sorted 100 Words:")
+for word in token_small_data:
+    print(word)
 end_time = time.time()
 print('100 Words Merge Sort Time:', end_time - start_time)
 
 start_time = time.time()
 sorted_large_data = merge_sort(token_large_data)
 end_time = time.time()
+print("Sorted 100 Words:")
+for word in token_large_data:
+    print(word)
 print('1000 Words Merge Sort Time:', end_time - start_time)
 
 # Merge Sort End
@@ -82,11 +88,17 @@ def bubble_sort(words):
 
 start_time = time.time()
 bubble_sort(token_small_data)
+print("Sorted 100 Words:")
+for word in token_small_data:
+    print(word)
 end_time = time.time()
 print('100 Words Bubble Sort Time', end_time - start_time)
 
 start_time = time.time()
 bubble_sort(token_large_data)
+print("Sorted 100 Words:")
+for word in token_large_data:
+    print(word)
 end_time = time.time()
 print('1000 Words Bubble Sort Time', end_time - start_time)
 
@@ -120,14 +132,45 @@ def partition(arr, low, high):
 
 start_time = time.time()
 quick_sort(token_small_data)
+print("Sorted 100 Words:")
+for word in token_small_data:
+    print(word)
 end_time = time.time()
 print('100 Words Quick Sort:', end_time - start_time)
 
 start_time = time.time()
 quick_sort(token_large_data)
+print("Sorted 100 Words:")
+for word in token_large_data:
+    print(word)
 end_time = time.time()
 print('1000 Words Quick Sort:', end_time - start_time)
 
 # Quick Sort End
 
-# Heap Sort Start
+# Insertion Sort Start
+
+def insertion_sort(arr):
+    for i in range(1, len(arr)):                            # iterates from the 2nd elements to the last
+        key = arr[i]
+        j = i - 1                                           # creates variable for elements before current
+        while j >= 0 and key < arr[j]:                      # if j is o or higher and key is less than j
+            arr[j + 1] = arr[j]                             # shifts j to the right once
+            j -= 1                                          # decrements j
+        arr[j + 1] = key                                    # correct position for key is found at j + 1
+
+start_time = time.time()
+insertion_sort(token_small_data)
+print("Sorted 100 Words:")
+for word in token_small_data:
+    print(word)
+end_time = time.time()
+print('100 Words Insertion Sort:', end_time - start_time)
+
+start_time = time.time()
+insertion_sort(token_large_data)
+print("Sorted 100 Words:")
+for word in token_large_data:
+    print(word)
+end_time = time.time()
+print('1000 Words Insertion Sort:', end_time - start_time)
