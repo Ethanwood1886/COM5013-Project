@@ -95,23 +95,27 @@ print('1000 Words Bubble Sort Time', end_time - start_time)
 # Quick Sort Start
 
 def quick_sort(arr):
-    if len(arr) <= 1:
-        return arr                  # Array is sorted if there is 1 or fewer elements
-    
-    pivot = arr[-1]                 # Selects last item in array at pivot
-    left = []
-    right = []
+    stack = [(0, len(arr) - 1)]                             # Creates stack, 0 start, length of array - 1 end
 
-    for num in arr[:-1]:
-        if num <= pivot:
-            left.append(num)
-        else:
-            right.append(num)
+    while stack:
+        start, end = stack.pop()
 
-    left = quick_sort(left)
-    right = quick_sort(right)
+        if start < end:                                     # executed when array has more than one element
+            pivot_index = partition(arr, start, end)
+            stack.append((start, pivot_index - 1))          # pushes left subarray to pivot_index - 1
+            stack.append((pivot_index + 1, end))            # pushes right subarray to pivot_index + 1
 
-    return left + [pivot] + right
+def partition(arr, low, high):
+    pivot = arr[high]                                       # chooses last element as pivot
+    i = low - 1                                             # keep track of position
+
+    for j in range(low, high):                              # iterates through all elements except the pivot
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]                 # swap position of elements
+
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]           # places the pivot 1 position before previous smaller element
+    return i + 1
 
 
 start_time = time.time()
@@ -123,3 +127,7 @@ start_time = time.time()
 quick_sort(token_large_data)
 end_time = time.time()
 print('1000 Words Quick Sort:', end_time - start_time)
+
+# Quick Sort End
+
+# Heap Sort Start
